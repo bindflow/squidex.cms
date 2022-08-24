@@ -1,0 +1,24 @@
+{
+  "$schema": "./../__json/contents.json",
+  "contents": [
+    {
+      "schema": "home",
+      "data": {
+        "title": {
+          "iv": null
+        },
+        "description": {
+          "iv": null
+        },
+        "image": {
+          "iv": null
+        },
+        "seo": {}
+      },
+      "id": "661a458b-1b1b-4ed8-82cc-deebaef1eb0c",
+      "status": "Published"
+    }
+  ],
+  "sourceApp": "poc",
+  "sourceUrl": "http://localhost/"
+}

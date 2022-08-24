@@ -1,0 +1,14 @@
+﻿@inject IConfiguration _configuration
+
+<div class="d-flex flex-column flex-column justify-center" style="height:100%">
+    <MudButton Size="Size.Large" Class="my-12" Link="@adminUrl" Color="Color.Dark" Target="_blank">
+        @model
+    </MudButton>
+</div>
+
+    @code {
+    [Parameter]
+    public string model { get; set; } = "Go to admin and configure your page";
+
+    private string adminUrl => $"{_configuration["ClientUrl"]}/app/{_configuration["AppName"]}/content/";
+}

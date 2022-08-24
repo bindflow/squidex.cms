@@ -1,0 +1,54 @@
+﻿@using MudBlazor.Utilities
+@inherits LayoutComponentBase
+
+@inject ISquidexService<Theme,ThemeData> _theme
+@inject ISnackbar _snackbar
+
+<MudThemeProvider Theme="theme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <AppNavMenu />
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.Large" Class="pt-16">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+    <AppFooter />
+</MudLayout>
+
+@code {
+    private MudTheme theme = new MudTheme { Palette = new Palette { Primary = "#8E24AA", AppbarBackground = "#8E24AA" } };
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var client = await _theme.Client("theme").GetAsync();
+            var item = client.Items.SingleOrDefault();
+
+            if (item != null)
+            {
+                theme.Palette = new Palette
+                    {
+                        Primary = TrySetColor(theme.Palette.Primary, item.Data.Primary),
+                        TextPrimary = TrySetColor(theme.Palette.TextPrimary, item.Data.TextPrimary),
+                        AppbarBackground = TrySetColor(theme.Palette.AppbarBackground, item.Data.AppbarBackground),
+                    };
+            }
+        }
+        catch (Exception e)
+        {
+            _snackbar.Add(e.Message, Severity.Error);
+        }
+
+        static MudColor TrySetColor(MudColor color, string value)
+        {
+            if (!string.IsNullOrEmpty(value))
+                color = value;
+
+            return color;
+        }
+    }
+}

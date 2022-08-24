@@ -1,0 +1,60 @@
+﻿@page "/custom"
+
+@inject ISquidexService<Build,BuildData> _builder
+@inject ISnackbar _snackbar
+
+<AppSeo model="seo" />
+
+@if (bags != null && bags.Any())
+{
+    <MudGrid Class="mb-16">
+        @foreach (var bag in bags)
+        {
+            <MudItem xs="(int)bag.Column">
+                <MudPaper Class="@bag.Padding">
+                    @if (bag.UseInterop)
+                    {
+                        <VueApp TData="BuildVM" VueComponents="@(new string[]{})" IsLoggingEnabled="@bag.UseLogging">
+                            @((MarkupString)bag.Html)
+                        </VueApp>
+                    }
+                    else
+                    {
+                        @((MarkupString)bag.Html)
+                    }
+
+                </MudPaper>
+            </MudItem>
+        }
+    </MudGrid>
+}
+else
+{
+    <AppConfigure model="Configure your custom page" />
+}
+<br />
+
+@code {
+    private List<Bag> bags = new();
+
+    private Seo seo = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var client = await _builder.Client("builder").GetAsync();
+            var item = client.Items.SingleOrDefault();
+
+            if (item != null)
+            {
+                seo = item.Data.Seo;
+                bags = item.Data.Components;
+            }
+        }
+        catch (Exception e)
+        {
+            _snackbar.Add(e.Message, Severity.Error);
+        }
+    }
+}

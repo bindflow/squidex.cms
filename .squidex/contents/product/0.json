@@ -1,0 +1,36 @@
+{
+  "$schema": "./../__json/contents.json",
+  "contents": [
+    {
+      "schema": "product",
+      "data": {
+        "name": {
+          "iv": "Amazfit Smartwatch Gts 2e"
+        },
+        "image": {
+          "iv": [
+            "d819993c-187b-4e1c-b989-f63ccaac1e57"
+          ]
+        },
+        "description": {
+          "iv": "**O que você precisa saber sobre este produto**\n* Tela AMOLED de 1.65\".\n* Suporta até 50m debaixo d'água.\n* Com GPS integrado.\n* Bateria de 14 dias de duração.\n* Com conectividade via Bluetooth.\n* Capacidade da memória interna de 5GB.\n* Sensores incluídos: acelerômetro, barómetro, giroscópio, sensor de luz ambiente, sensor geomagnético, sensor ótico de freqüência cardíaca ppg, termômetro.\n* Pulseira intercambiável para outras cores, não inclusa no produto.\n\n[powered by Bindflow](http://bindflow.com.br)"
+        },
+        "value": {
+          "iv": 345
+        },
+        "categories": {
+          "iv": [
+            "smart"
+          ]
+        },
+        "rating": {
+          "iv": 4
+        }
+      },
+      "id": "47a6b12e-fba6-4d08-99f5-b68e1c7a36bc",
+      "status": "Published"
+    }
+  ],
+  "sourceApp": "poc",
+  "sourceUrl": "http://localhost/"
+}

@@ -1,0 +1,58 @@
+﻿@page "/shopping"
+
+@inject ISquidexService<Shop,ShopData> _shop
+@inject ISquidexService<Product,ProductData> _product
+@inject ISnackbar _snackbar
+
+<AppSeo model="seo" />
+<AppBanner model="banners" />
+<AppShowcase model="showcase" />
+
+@code {
+    private List<(string? image, string label)> banners = new();
+    private List<(string? id, string? image, string? label, double? value, List<string>? categories)> showcase = new();
+
+    private Seo seo = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var shop = await _shop.Client("shop").GetAsync();
+            var item = shop.Items.SingleOrDefault();
+
+            if (item != null)
+            {
+                seo = item.Data.Seo;
+
+                if (item.Data.Banners != null)
+                {
+                    banners = item.Data.Banners.Select(BannerMap).ToList();
+                }
+
+                if (item.Data.Showcase != null && item.Data.Showcase.Any())
+                {
+                    var product = await _product.Client("product").GetAsync(CastToHashSet(item.Data.Showcase));
+
+                    if (product.Items != null)
+                    {
+                        showcase = product.Items.Where(product => product != null).Select(ProductMap).ToList();
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            _snackbar.Add(e.Message, Severity.Error);
+        }
+
+        HashSet<string> CastToHashSet(List<Guid> guids) =>
+            new HashSet<string>(guids.Select(id => id.ToString()));
+
+        (string? image, string label) BannerMap(Banner entity) =>
+            entity is null ? default : new(_shop.GenerateImageUri(entity.Image.FirstOrDefault()), entity.Label);
+
+        (string? id, string? image, string? label, double? value, List<string>? categories) ProductMap(Product entity) =>
+            entity is null ? default : new(entity.Id, _product.GenerateImageUri(entity.Data?.Image?.FirstOrDefault()), entity.Data?.Name, entity.Data?.Value, entity.Data?.Categories);
+    }
+}

@@ -1,0 +1,76 @@
+﻿@page "/review/{id}"
+
+@inject ISquidexService<Product,ProductData> _product
+@inject ISnackbar _snackbar
+
+<AppSeo model="seo" />
+
+<div class="mb-12 d-flex flex-column" style="height:100%">
+    <MudImage Class="mx-auto" Fluid="true" Src="@imageUrl" Style="height:250px" ObjectFit="ObjectFit.Cover" Alt="@name" />
+    <br />
+</div>
+<div class="d-flex flex-column align-center">
+    <MudRating SelectedValue="@rating" Size="Size.Medium" />
+</div>
+
+<MudPaper Class="pa-md-6 ma-6 mx-lg-auto">
+    @if (categories != null && categories.Any())
+    {
+        <MudText Color="Color.Secondary" Typo="Typo.caption"> Category: @(string.Join(", ", categories)) </MudText>
+    }
+
+    <MudText Typo="Typo.body2">Product: @name</MudText>
+    <MudText Typo="Typo.body2">Pricing: @value?.ToString("c")</MudText>
+</MudPaper>
+
+
+<MudPaper Class="pa-md-6 mb-16 mx-lg-auto">
+    @((MarkupString)description)
+</MudPaper>
+
+<br />
+
+@code {
+    [Parameter]
+    public string id { get; set; }
+
+    private string? name;
+    private string? description;
+    private string? imageUrl;
+    private double? value;
+    private int rating = 0;
+    private List<string>? categories;
+
+    private Seo seo => new Seo { Title = $"Review {name}" };
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var product = await _product.Client("product").GetAsync();
+            var item = product.Items.SingleOrDefault();
+
+            if (item != null)
+            {
+                name = item.Data?.Name;
+                value = item.Data?.Value;
+                categories = item.Data?.Categories;
+                imageUrl = _product.GenerateImageUri(item.Data?.Image?.FirstOrDefault());
+
+                if (item.Data?.Rating != null)
+                {
+                    rating = (int)item.Data.Rating;
+                }
+
+                if (!string.IsNullOrEmpty(item.Data?.Description))
+                {
+                    description = Markdown.ToHtml(item.Data.Description);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            _snackbar.Add(e.Message, Severity.Error);
+        }
+    }
+}

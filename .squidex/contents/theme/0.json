@@ -1,0 +1,21 @@
+{
+  "$schema": "./../__json/contents.json",
+  "contents": [
+    {
+      "schema": "theme",
+      "data": {
+        "primary": {
+          "iv": null
+        },
+        "textPrimary": {
+          "iv": null
+        },
+        "appbarBackground": {}
+      },
+      "id": "c5bff3c1-ef86-4a83-a3de-3801bb49226e",
+      "status": "Published"
+    }
+  ],
+  "sourceApp": "poc",
+  "sourceUrl": "http://localhost/"
+}

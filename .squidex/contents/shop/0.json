@@ -1,0 +1,19 @@
+{
+  "$schema": "./../__json/contents.json",
+  "contents": [
+    {
+      "schema": "shop",
+      "data": {
+        "banners": {},
+        "showcase": {
+          "iv": null
+        },
+        "seo": {}
+      },
+      "id": "18694810-c770-4957-b9e5-cbedaafe89ef",
+      "status": "Published"
+    }
+  ],
+  "sourceApp": "poc",
+  "sourceUrl": "http://localhost/"
+}

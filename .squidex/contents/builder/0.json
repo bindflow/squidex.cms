@@ -1,0 +1,55 @@
+{
+  "$schema": "./../__json/contents.json",
+  "contents": [
+    {
+      "schema": "builder",
+      "data": {
+        "components": {
+          "iv": [
+            {
+              "schemaId": "bag",
+              "html": "  <h1 \r\n    style=\"margin-bottom: 20px\">\r\n     Blazor Interop Vue.js\r\n </h1>\r\n <h2 \r\n    style=\"margin-bottom: 20px\">\r\n     Counter: {{ counter }}\r\n </h2>\r\n <p \r\n    style=\"margin-bottom: 20px\">\r\n    Two Way binding:\r\n    <input \r\n        style=\"width: 100%;padding: 12px 20px;margin: 8px 0;display: inline-block;border: 1px solid #ccc;border-radius: 4px;box-sizing: border-box;\"    \r\n        v-model=\"counter\" />\r\n</p>\r\n<btn\r\n    style=\"background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;\"\r\n    color=\"primary\" v-on:click=\"Increment\">\r\n    Increment on Server\r\n</btn>",
+              "column": 12,
+              "label": null,
+              "padding": "pa-6",
+              "useInterop": false,
+              "useLogging": false
+            },
+            {
+              "schemaId": "bag",
+              "html": "<strong><p>x2</p></strong>",
+              "column": 2,
+              "label": null,
+              "padding": "pa-6",
+              "useInterop": false,
+              "useLogging": false
+            },
+            {
+              "schemaId": "bag",
+              "html": "<strong><p>x4</p></strong>",
+              "column": 4,
+              "label": null,
+              "padding": "pa-6",
+              "useInterop": false,
+              "useLogging": false
+            },
+            {
+              "schemaId": "bag",
+              "html": "<strong><p>x6</p></strong>\n<br/>\n<br/>",
+              "column": 6,
+              "label": null,
+              "padding": "pa-6",
+              "useInterop": false,
+              "useLogging": false
+            }
+          ]
+        },
+        "seo": {}
+      },
+      "id": "a76511ec-ee63-4eba-9b30-d54ee40205f4",
+      "status": "Published"
+    }
+  ],
+  "sourceApp": "poc",
+  "sourceUrl": "http://localhost/"
+}

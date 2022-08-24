@@ -1,0 +1,29 @@
+﻿@if (model != null && model.Any())
+{
+    <MudCarousel Class="mud-width-full" Style="height:360px;" TData="object" ShowArrows="true" ShowBullets="false" AutoCycle="true">
+        @foreach (var context in model)
+        {
+            <MudCarouselItem Transition="Transition.Fade">
+                <div class="d-flex flex-column justify-center" style="height:100%">
+                    <MudCard>
+                        <MudCardMedia Image="@context.image" />
+                        <MudCardContent Class="mud-theme-primary">
+                            <MudText Align="Align.Center" Typo="Typo.h5">@context.label</MudText>
+                        </MudCardContent>
+                    </MudCard>
+                </div>
+            </MudCarouselItem>
+        }
+    </MudCarousel>
+    <MudDivider DividerType="DividerType.Middle" Class="my-12" />
+}
+else
+{
+    <AppConfigure model="Configure your banner" />
+}
+
+@code {
+    [Parameter]
+    public List<(string? image, string label)> model { get; set; } 
+        = new List<(string? image, string label)>();
+}

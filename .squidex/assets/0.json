@@ -1,0 +1,65 @@
+{
+  "$schema": "./../__json/assets.json",
+  "assets": [
+    {
+      "id": "2796b3d5-ab88-4fe6-b215-79d275d9a10e",
+      "mimeType": "image/png",
+      "fileName": "logo-dark.png",
+      "fileHash": "gH2TcjHrJahY9BZjhRpDRxxzKRzJRG3y6QrUUSlAGC4=",
+      "folderPath": "home",
+      "slug": "logo-dark.png",
+      "tags": [
+        "type/png",
+        "image",
+        "image/large"
+      ],
+      "metadata": {},
+      "isProtected": false
+    },
+    {
+      "id": "9bd32a96-3f34-458c-bc28-c7bb4ce8d1f5",
+      "mimeType": "image/webp",
+      "fileName": "colorful-discount-sale-podium-special-offer-composition_3482-5734.webp",
+      "fileHash": "WFwELsDB/SX4l7zKL2BzbncN40Ud4WiDP7A+iwCwDXc=",
+      "folderPath": "banner",
+      "slug": "colorful-discount-sale-podium-special-offer-composition-3482-5734.webp",
+      "tags": [
+        "type/webp",
+        "image",
+        "image/large"
+      ],
+      "metadata": {},
+      "isProtected": false
+    },
+    {
+      "id": "d819993c-187b-4e1c-b989-f63ccaac1e57",
+      "mimeType": "image/jpeg",
+      "fileName": "71dsO4OeB-L._AC_SL1500_.jpg",
+      "fileHash": "VE2tm9jiWdUK0oPou3iXmYeiQrqvBJVOJmzmVW8X+Kg=",
+      "folderPath": "product",
+      "slug": "71dso4oeb-l.-ac-sl1500-.jpg",
+      "tags": [
+        "type/jpg",
+        "image",
+        "image/medium"
+      ],
+      "metadata": {},
+      "isProtected": false
+    },
+    {
+      "id": "e471461f-5358-48bf-a094-0f53cac81426",
+      "mimeType": "image/webp",
+      "fileName": "natural-cosmetics-skin-care-lotion-banner_33099-1957.webp",
+      "fileHash": "hSEW9+XPZT89hLofQ3Yk+MpQE0ctdb41a+LslztUMb8=",
+      "folderPath": "banner",
+      "slug": "natural-cosmetics-skin-care-lotion-banner-33099-1957.webp",
+      "tags": [
+        "type/webp",
+        "image",
+        "image/large"
+      ],
+      "metadata": {},
+      "isProtected": false
+    }
+  ]
+}

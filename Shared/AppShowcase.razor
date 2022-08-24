@@ -1,0 +1,44 @@
+﻿@if (model != null && model.Any())
+{
+    <MudGrid Class="mb-16">
+        @foreach (var product in model)
+        {
+            <MudItem md="4" xs="12" sm="6">
+                <MudLink Href="@($"review/{product.id}")" Underline="Underline.None">
+                    <MudCard Style="text-align:center" Elevation="2">
+                        <MudTooltip Color="Color.Secondary">
+                            <ChildContent>
+                                <MudImage Fluid="true" Src="@product.image" Style="height:250px" ObjectFit="ObjectFit.Cover" Alt="@product.label" />
+                            </ChildContent>
+                            <TooltipContent>
+                                <MudText Typo="Typo.subtitle1">@product.value?.ToString("c")</MudText>
+                                <MudIcon Icon="@Icons.Material.Filled.Diamond" />
+                            </TooltipContent>
+                        </MudTooltip>
+                        <MudCardContent Style="height:115px">
+                            @if (product.categories != null && product.categories.Any())
+                            {
+                                foreach (var category in product.categories)
+                                {
+                                    <MudChip Color="Color.Secondary">@category</MudChip>
+                                }
+                                <br>
+                            }
+                            <MudText Typo="Typo.button">@product.label</MudText>
+                        </MudCardContent>
+                    </MudCard>
+                </MudLink>
+            </MudItem>
+        }
+    </MudGrid>
+}
+else
+{
+    <AppConfigure model="Configure your showcase" />
+}
+
+@code {
+    [Parameter]
+    public List<(string? id, string? image, string? label, double? value, List<string>? categories)> model { get; set; }
+                = new List<(string? id, string? image, string? label, double? value, List<string>? category)>();
+}

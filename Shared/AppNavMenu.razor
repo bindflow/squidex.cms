@@ -1,0 +1,14 @@
+﻿@inject IConfiguration _configuration
+
+<MudAppBar Elevation="0">
+    <MudIconButton Icon="@Icons.Material.Filled.Home" Color="Color.Inherit" Href="/" />
+    <MudIconButton Icon="@Icons.Material.Filled.Store" Color="Color.Inherit" Href="/shopping" />
+    <MudIconButton Icon="@Icons.Material.Filled.Newspaper" Color="Color.Inherit" Href="/custom" />
+    <MudSpacer />
+    <MudIconButton Icon="@Icons.Material.Filled.AdminPanelSettings" Color="Color.Inherit" Link="@adminUrl" Target="_blank" />
+    <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/bindflow/" Target="_blank" />
+</MudAppBar>
+
+@code {
+    private string adminUrl => $"{_configuration["ClientUrl"]}app/{_configuration["AppName"]}";
+}

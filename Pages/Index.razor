@@ -1,0 +1,54 @@
+﻿@page "/"
+
+@inject ISquidexService<Home,HomeData> _home
+@inject ISnackbar _snackbar
+
+
+@if (hasData)
+{
+    <AppSeo model="seo" />
+    <MudText Typo="Typo.h4" Align="Align.Center">@title</MudText>
+    <MudText Typo="Typo.h6" Class="my-16" Style="text-align:center">@description</MudText>
+    <MudPaper Class="d-flex" Elevation="0">
+        <div Class="mx-auto">
+            <a href="https://bindflow.com.br/" target="_blank">
+                <MudImage Src="@imageUrl" Width="300" />
+            </a>
+        </div>
+    </MudPaper>
+}
+else
+{
+    <AppConfigure model="Configure your home page" />
+}
+
+
+@code {
+    private string? title;
+    private string? description;
+    private string? imageUrl;
+
+    private bool hasData => new[] { title, description, imageUrl }.Any(a => a != null);
+    private Seo seo = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var client = await _home.Client("home").GetAsync();
+            var item = client.Items.SingleOrDefault();
+
+            if (item != null)
+            {
+                seo = item.Data.Seo;
+                title = item.Data.Title;
+                description = item.Data.Description;
+                imageUrl = _home.GenerateImageUri(item.Data?.Image?.FirstOrDefault());
+            }
+        }
+        catch (Exception e)
+        {
+            _snackbar.Add(e.Message, Severity.Error);
+        }
+    }
+}
